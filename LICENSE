@@ -19,3 +19,51 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+---
+
+**`firmware/platformio.ini`**
+
+```ini
+; PlatformIO Project Configuration File
+;
+;   Build options: build flags, source filter
+;   Upload options: custom upload port, speed and extra flags
+;   Library options: dependencies, extra library storages
+;   Advanced options: extra scripting
+;
+; Please visit documentation for the other options and examples
+; https://docs.platformio.org/page/projectconf.html
+
+[platformio]
+default_envs = your_board_env_name ; e.g., esp32dev
+
+[env:your_board_env_name]
+platform = espressif32 ; Example: Use the Espressif 32 platform
+board = esp32dev       ; Example: Use the generic ESP32 Dev Module configuration
+framework = espidf     ; Example: Use the ESP-IDF framework (or arduino)
+
+; --- Monitor Options ---
+monitor_speed = 115200
+
+; --- Library Dependencies ---
+; Add libraries needed, e.g., HX711 drivers, Display drivers, WiFi libs (if not built-in)
+; Format: Owner/Name@Version or GitHub URL or local path
+lib_deps =
+    bogde/HX711 @ ^0.7.5                  ; Example for HX711 Load Cell Amplifier
+    ; adafruit/Adafruit GFX Library        ; Example if using specific displays
+    ; adafruit/Adafruit SSD1306            ; Example for OLED display
+    ; khoih-prog/ESP_WiFiManager           ; Example WiFi Manager library (if not using native ESP-IDF)
+
+; --- Build Flags ---
+; Add custom build flags if needed
+; build_flags = -DDEBUG_MODE=1
+
+; --- Upload Options ---
+; Specify upload port if auto-detection fails
+; upload_port = COM3
+; upload_speed = 921600
+
+[common]
+; Common settings can be placed here and inherited using ${common.setting_name}
